@@ -1,0 +1,12 @@
+.env
+
+.vscode
+.cursor
+
+# JSON
+docs/db/seller.json
+docs/db/warehouse.json
+docs/db/buyer.json
+docs/db/section.json
+docs/db/product.json
+docs/db/employee.json

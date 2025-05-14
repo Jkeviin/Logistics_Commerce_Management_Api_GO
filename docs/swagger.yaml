@@ -1,0 +1,1665 @@
+basePath: /api/v1
+definitions:
+  domain.BuyerAttributes:
+    properties:
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+    type: object
+  domain.BuyerDoc:
+    properties:
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+    type: object
+  domain.BuyerListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.BuyerDoc'
+        type: array
+    type: object
+  domain.BuyerPurchaseOrdersReport:
+    properties:
+      buyer_id:
+        type: integer
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      purchase_orders_count:
+        type: integer
+    type: object
+  domain.BuyerPurchaseOrdersReportResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.BuyerPurchaseOrdersReport'
+        type: array
+    type: object
+  domain.BuyerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.BuyerDoc'
+    type: object
+  domain.CarriesDoc:
+    properties:
+      address:
+        type: string
+      cid:
+        type: string
+      company_name:
+        type: string
+      id:
+        type: integer
+      locality_id:
+        type: string
+      telephone:
+        type: string
+    type: object
+  domain.CarryResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.CarriesDoc'
+    type: object
+  domain.EmployeeAttributes:
+    properties:
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      warehouse_id:
+        type: integer
+    type: object
+  domain.EmployeeDoc:
+    properties:
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      warehouse_id:
+        type: integer
+    type: object
+  domain.EmployeeResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.EmployeeDoc'
+    type: object
+  domain.EmployeeWithInboundOrdersCount:
+    properties:
+      card_number_id:
+        type: integer
+      first_name:
+        type: string
+      id:
+        type: integer
+      inbound_orders_count:
+        type: integer
+      last_name:
+        type: string
+      warehouse_id:
+        type: string
+    type: object
+  domain.EmployeeWithInboundOrdersCountResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.EmployeeWithInboundOrdersCount'
+        type: array
+    type: object
+  domain.EmployeesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.EmployeeDoc'
+        type: array
+    type: object
+  domain.ErrorResponse:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  domain.InboundOrderAttributes:
+    properties:
+      employee_id:
+        type: integer
+      order_date:
+        $ref: '#/definitions/utils.Date'
+      order_number:
+        type: string
+      product_batch_id:
+        type: integer
+      temperature:
+        type: number
+      warehouse_id:
+        type: integer
+    type: object
+  domain.InboundOrderDoc:
+    properties:
+      employee_id:
+        type: integer
+      id:
+        type: integer
+      order_date:
+        $ref: '#/definitions/utils.Date'
+      order_number:
+        type: string
+      product_batch_id:
+        type: integer
+      temperature:
+        type: number
+      warehouse_id:
+        type: integer
+    type: object
+  domain.InboundOrderResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.InboundOrderDoc'
+    type: object
+  domain.ProductAttributes:
+    properties:
+      description:
+        type: string
+      expiration_date:
+        type: string
+      expiration_rate:
+        type: number
+      freezing_rate:
+        type: number
+      height:
+        type: number
+      length:
+        type: number
+      netweight:
+        type: number
+      product_code:
+        type: string
+      product_type_id:
+        type: integer
+      recommended_freezing_temperature:
+        type: number
+      seller_id:
+        type: integer
+      width:
+        type: number
+    type: object
+  domain.ProductBatchAttributes:
+    properties:
+      batch_number:
+        type: string
+      current_quantity:
+        type: integer
+      current_temperature:
+        type: number
+      due_date:
+        $ref: '#/definitions/utils.Date'
+      initial_quantity:
+        type: integer
+      manufacturing_date:
+        $ref: '#/definitions/utils.Date'
+      manufacturing_hour:
+        type: integer
+      minimum_temperature:
+        type: number
+      product_id:
+        type: integer
+      section_id:
+        type: integer
+    type: object
+  domain.ProductBatchDoc:
+    properties:
+      batch_number:
+        type: string
+      current_quantity:
+        type: integer
+      current_temperature:
+        type: number
+      due_date:
+        $ref: '#/definitions/utils.Date'
+      id:
+        type: integer
+      initial_quantity:
+        type: integer
+      manufacturing_date:
+        $ref: '#/definitions/utils.Date'
+      manufacturing_hour:
+        type: integer
+      minimum_temperature:
+        type: number
+      product_id:
+        type: integer
+      section_id:
+        type: integer
+    type: object
+  domain.ProductBatchResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.ProductBatchDoc'
+    type: object
+  domain.ProductDoc:
+    properties:
+      description:
+        type: string
+      expiration_date:
+        type: string
+      expiration_rate:
+        type: number
+      freezing_rate:
+        type: number
+      height:
+        type: number
+      id:
+        type: integer
+      length:
+        type: number
+      netweight:
+        type: number
+      product_code:
+        type: string
+      product_type_id:
+        type: integer
+      recommended_freezing_temperature:
+        type: number
+      seller_id:
+        type: integer
+      width:
+        type: number
+    type: object
+  domain.ProductResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.ProductDoc'
+    type: object
+  domain.ProductsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.ProductDoc'
+        type: array
+    type: object
+  domain.PurchaseOrderAttributesSwagger:
+    properties:
+      buyer_id:
+        example: 1
+        type: integer
+      order_date:
+        example: "2021-04-04"
+        type: string
+      order_number:
+        example: order#1
+        type: string
+      product_record_id:
+        example: 1
+        type: integer
+      tracking_code:
+        example: abscf123
+        type: string
+    type: object
+  domain.PurchaseOrderDoc:
+    properties:
+      buyer_id:
+        type: integer
+      id:
+        type: integer
+      order_date:
+        type: string
+      order_number:
+        type: string
+      product_record_id:
+        type: integer
+      tracking_code:
+        type: string
+    type: object
+  domain.PurchaseOrderResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.PurchaseOrderDoc'
+    type: object
+  domain.ReportProductRecord:
+    properties:
+      description:
+        type: string
+      product_id:
+        type: integer
+      records_count:
+        type: integer
+    type: object
+  domain.ReportResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.ReportProductRecord'
+        type: array
+    type: object
+  domain.SectionAttributes:
+    properties:
+      current_capacity:
+        type: integer
+      current_temperature:
+        type: number
+      maximum_capacity:
+        type: integer
+      minimum_capacity:
+        type: integer
+      minimum_temperature:
+        type: number
+      product_type_id:
+        type: integer
+      section_number:
+        type: string
+      warehouse_id:
+        type: integer
+    type: object
+  domain.SectionDoc:
+    properties:
+      current_capacity:
+        type: integer
+      current_temperature:
+        type: number
+      id:
+        type: integer
+      maximum_capacity:
+        type: integer
+      minimum_capacity:
+        type: integer
+      minimum_temperature:
+        type: number
+      product_type_id:
+        type: integer
+      section_number:
+        type: string
+      warehouse_id:
+        type: integer
+    type: object
+  domain.SectionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.SectionDoc'
+    type: object
+  domain.SectionWithProductCount:
+    properties:
+      product_count:
+        type: integer
+      section_id:
+        type: integer
+      section_number:
+        type: string
+    type: object
+  domain.SectionWithProductsCountResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.SectionWithProductCount'
+        type: array
+    type: object
+  domain.SectionsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.SectionDoc'
+        type: array
+    type: object
+  domain.SellerAttributes:
+    properties:
+      address:
+        type: string
+      cid:
+        type: string
+      company_name:
+        type: string
+      locality_id:
+        type: string
+      telephone:
+        type: string
+    type: object
+  domain.SellerDoc:
+    properties:
+      address:
+        type: string
+      cid:
+        type: string
+      company_name:
+        type: string
+      id:
+        type: integer
+      locality_id:
+        type: string
+      telephone:
+        type: string
+    type: object
+  domain.SellerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.SellerDoc'
+    type: object
+  domain.SellersResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.SellerDoc'
+        type: array
+    type: object
+  domain.WarehouseAttributes:
+    properties:
+      address:
+        type: string
+      locality_id:
+        type: string
+      minimun_capacity:
+        type: integer
+      minimun_temperature:
+        type: number
+      telephone:
+        type: string
+      warehouse_code:
+        type: string
+    type: object
+  domain.WarehouseDoc:
+    properties:
+      address:
+        type: string
+      id:
+        type: integer
+      locality_id:
+        type: string
+      minimun_capacity:
+        type: integer
+      minimun_temperature:
+        type: number
+      telephone:
+        type: string
+      warehouse_code:
+        type: string
+    type: object
+  domain.WarehouseResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.WarehouseDoc'
+    type: object
+  domain.WarehousesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.WarehouseDoc'
+        type: array
+    type: object
+  utils.Date:
+    properties:
+      time.Time:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API para gestionar sellers y warehouses
+  title: API de Sellers y Warehouses
+  version: "1.0"
+paths:
+  /buyers:
+    get:
+      description: Devuelve todos los buyers del sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Lista de buyers obtenida exitosamente
+          schema:
+            $ref: '#/definitions/domain.BuyerListResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Devuelve todos los buyers
+      tags:
+      - Buyer
+    post:
+      consumes:
+      - application/json
+      description: Crea un nuevo buyer en el sistema
+      parameters:
+      - description: Buyer a crear
+        in: body
+        name: buyer
+        required: true
+        schema:
+          $ref: '#/definitions/domain.BuyerAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Buyer creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.BuyerDoc'
+        "409":
+          description: Código del buyer ya existente
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo buyer
+      tags:
+      - Buyer
+  /buyers/{id}:
+    delete:
+      description: Elimina un buyer por id
+      parameters:
+      - description: ID del buyer
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Buyer eliminado exitosamente
+        "400":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Buyer no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina un buyer por id
+      tags:
+      - Buyer
+    get:
+      description: Devuelve un buyer por id
+      parameters:
+      - description: ID del buyer
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Buyer obtenido exitosamente
+          schema:
+            $ref: '#/definitions/domain.BuyerResponse'
+        "400":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Buyer no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Devuelve un buyer por id
+      tags:
+      - Buyer
+    patch:
+      consumes:
+      - application/json
+      description: Actualiza un buyer por id
+      parameters:
+      - description: ID del buyer
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Buyer a actualizar
+        in: body
+        name: buyer
+        required: true
+        schema:
+          $ref: '#/definitions/domain.BuyerAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Buyer actualizado exitosamente
+          schema:
+            $ref: '#/definitions/domain.BuyerResponse'
+        "400":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Buyer no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: Código del buyer ya existente
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza un buyer por id
+      tags:
+      - Buyer
+  /buyers/reportPurchaseOrders:
+    get:
+      description: Devuelve un reporte de órdenes de compra por Buyer
+      parameters:
+      - description: ID del buyer
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reporte de órdenes de compra obtenido exitosamente
+          schema:
+            $ref: '#/definitions/domain.BuyerPurchaseOrdersReportResponse'
+        "400":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Buyer no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Reporte de órdenes de compra por Buyer
+      tags:
+      - Buyer
+  /carries:
+    post:
+      consumes:
+      - application/json
+      description: Crea un nuevo carry en el sistema
+      parameters:
+      - description: Datos del carry
+        in: body
+        name: carries
+        required: true
+        schema:
+          $ref: '#/definitions/domain.CarriesDoc'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Carry creado
+          schema:
+            $ref: '#/definitions/domain.CarryResponse'
+        "409":
+          description: Carry ya existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo carry
+      tags:
+      - Carries
+  /employee/reportInboundOrders:
+    get:
+      description: Reporte de inbound orders por empleado
+      parameters:
+      - description: ID de la sección
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reporte de inbound orders por empleado
+          schema:
+            $ref: '#/definitions/domain.EmployeeWithInboundOrdersCountResponse'
+        "400":
+          description: ID malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El empleado no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Reporte de inbound orders por empleado
+      tags:
+      - Employee
+  /employees:
+    get:
+      description: Retorna una lista de todos los Employees registrados en el sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de Employees
+          schema:
+            $ref: '#/definitions/domain.EmployeesResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Lista todos los Employees
+      tags:
+      - Employee
+    post:
+      consumes:
+      - application/json
+      description: Crea un nuevo empleado en el sistema con los datos proporcionados
+      parameters:
+      - description: Datos del empleado a crear
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/domain.EmployeeAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Empleado creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.EmployeeResponse'
+        "409":
+          description: El código de tarjeta ya existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo empleado
+      tags:
+      - Employee
+  /employees/{id}:
+    delete:
+      description: Elimina un employee por su ID de la base de datos
+      parameters:
+      - description: ID del employee
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: employee eliminado exitosamente
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El employee no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina un employee por su ID
+      tags:
+      - Employee
+    get:
+      description: Retorna la información de un Employee por su ID
+      parameters:
+      - description: ID del Employee
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de Employees
+          schema:
+            $ref: '#/definitions/domain.EmployeesResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El employee no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Retorna un Employee por su ID
+      tags:
+      - Employee
+    patch:
+      consumes:
+      - application/json
+      description: Actualiza los datos de un empleado existente en el sistema
+      parameters:
+      - description: ID del empleado
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Datos del empleado a actualizar
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/domain.EmployeeAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Empleado actualizado exitosamente
+          schema:
+            $ref: '#/definitions/domain.EmployeeResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El empleado no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: El código de tarjeta ya existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza un empleado por su ID
+      tags:
+      - Employee
+  /inboundOrders:
+    post:
+      description: Crea un nuevo inbound en el sistema
+      parameters:
+      - description: inbound order a crear
+        in: body
+        name: InboundOrder
+        required: true
+        schema:
+          $ref: '#/definitions/domain.InboundOrderAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Inbound Order creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.InboundOrderResponse'
+        "409":
+          description: Conflicto de clave foránea o unica
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo inbound order
+      tags:
+      - InboundOrder
+  /productBatches:
+    post:
+      description: Crea un nuevo product batch en el sistema
+      parameters:
+      - description: product batch a crear
+        in: body
+        name: productBatch
+        required: true
+        schema:
+          $ref: '#/definitions/domain.ProductBatchAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Product Batch creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.ProductBatchResponse'
+        "409":
+          description: Conflicto de clave foránea o unica
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo product batch
+      tags:
+      - ProductBatch
+  /productRecords:
+    get:
+      description: Devuelve todos los reportes de productos y filtra por id de producto
+      parameters:
+      - description: ID del producto
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Lista de reportes obtenida exitosamente
+          schema:
+            $ref: '#/definitions/domain.ReportResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Devuelve todos los reportes de productos y filtra por id de producto
+      tags:
+      - ProductRecord
+  /products:
+    get:
+      description: Retorna una lista de todos los productos registrados en el sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de productos
+          schema:
+            $ref: '#/definitions/domain.ProductsResponse'
+        "400":
+          description: Error al parsear la fecha de caducidad
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Productos no encontrados
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Lista todos los productos
+      tags:
+      - Product
+    post:
+      description: Crea un nuevo producto en el sistema
+      parameters:
+      - description: Producto a crear
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domain.ProductAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Producto creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.ProductResponse'
+        "409":
+          description: Tipo de producto o vendedor no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo producto
+      tags:
+      - Product
+  /products/{id}:
+    delete:
+      description: Elimina un producto por su ID
+      parameters:
+      - description: ID del producto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Producto eliminado exitosamente
+          schema:
+            $ref: '#/definitions/domain.ProductResponse'
+        "400":
+          description: ID de producto inválido
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Producto no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: Error de eliminación por clave foránea
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina un producto por su ID
+      tags:
+      - Product
+    get:
+      description: Obtiene un producto por su ID
+      parameters:
+      - description: ID del producto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Producto encontrado
+          schema:
+            $ref: '#/definitions/domain.ProductResponse'
+        "400":
+          description: ID de producto inválido
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Producto no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Obtiene un producto por su ID
+      tags:
+      - Product
+    patch:
+      description: Actualiza un producto por su ID
+      parameters:
+      - description: ID del producto
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Producto a actualizar
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domain.ProductAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Producto actualizado exitosamente
+          schema:
+            $ref: '#/definitions/domain.ProductResponse'
+        "400":
+          description: ID de producto inválido
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Producto no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: Conflicto de producto
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Error de validación
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza un producto por su ID
+      tags:
+      - Product
+  /purchaseOrders:
+    post:
+      consumes:
+      - application/json
+      description: Crea una nueva orden de compra en el sistema
+      parameters:
+      - description: Datos de la orden de compra a crear
+        in: body
+        name: purchase_order
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PurchaseOrderAttributesSwagger'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Orden de compra creada exitosamente
+          schema:
+            $ref: '#/definitions/domain.PurchaseOrderResponse'
+        "409":
+          description: El número de orden ya existe, o buyer/product no existen
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea una nueva orden de compra
+      tags:
+      - PurchaseOrders
+  /sections:
+    get:
+      description: Retorna una lista con todas las sections registradas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de sections
+          schema:
+            $ref: '#/definitions/domain.SectionsResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Lista todas las sections
+      tags:
+      - Section
+    post:
+      description: Crea un nuevo section en el sistema
+      parameters:
+      - description: section a crear
+        in: body
+        name: section
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SectionAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Section creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.SectionResponse'
+        "409":
+          description: Código del section ya existente
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo section
+      tags:
+      - Section
+  /sections/{id}:
+    delete:
+      description: Elimina una sección por su ID de la base de datos
+      parameters:
+      - description: ID de la sección
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: sección eliminada exitosamente
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: La sección no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina una sección por su ID
+      tags:
+      - Section
+    get:
+      description: Retorna la información de un section por su id
+      parameters:
+      - description: ID del section
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Section encontrado
+          schema:
+            $ref: '#/definitions/domain.SectionResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: Section no encontrado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Retorna un section por su id
+      tags:
+      - Section
+    patch:
+      description: Actualiza una sección por su ID de la base de datos
+      parameters:
+      - description: ID de la sección
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: sección a actualizar
+        in: body
+        name: section
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SectionAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sección actualizada exitosamente
+          schema:
+            $ref: '#/definitions/domain.SectionResponse'
+        "404":
+          description: La sección no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza una sección por su ID
+      tags:
+      - Section
+  /sections/reportProducts:
+    get:
+      description: Reporte de productos por sección
+      parameters:
+      - description: ID de la sección
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reporte de productos por sección
+          schema:
+            $ref: '#/definitions/domain.SectionWithProductsCountResponse'
+        "400":
+          description: ID malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: La sección no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Reporte de productos por sección
+      tags:
+      - Section
+  /sellers:
+    get:
+      description: Retorna una lista de todos los proveedores registrados en el sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de proveedores
+          schema:
+            $ref: '#/definitions/domain.SellersResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Lista todos los proveedores
+      tags:
+      - Sellers
+    post:
+      consumes:
+      - application/json
+      description: Crea un nuevo proveedor en el sistema con los datos proporcionados
+      parameters:
+      - description: Datos del proveedor a crear
+        in: body
+        name: seller
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SellerAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Proveedor creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.SellerResponse'
+        "409":
+          description: El CID ya existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo proveedor
+      tags:
+      - Sellers
+  /sellers/{id}:
+    delete:
+      description: Elimina un proveedor existente de la base de datos
+      parameters:
+      - description: ID del proveedor
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Proveedor eliminado exitosamente
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El proveedor no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina un proveedor por su ID
+      tags:
+      - Sellers
+    get:
+      description: Retorna la información de un proveedor específico basado en su
+        ID
+      parameters:
+      - description: ID del proveedor
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Proveedor encontrado
+          schema:
+            $ref: '#/definitions/domain.SellerResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El proveedor no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Retorna un proveedor por su ID
+      tags:
+      - Sellers
+    patch:
+      consumes:
+      - application/json
+      description: Actualiza un proveedor existente con los datos proporcionados
+      parameters:
+      - description: ID del proveedor
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Datos del proveedor a actualizar
+        in: body
+        name: seller
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SellerAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Proveedor actualizado exitosamente
+          schema:
+            $ref: '#/definitions/domain.SellerResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El proveedor no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: El CID ya existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza un proveedor por su ID
+      tags:
+      - Sellers
+  /warehouses:
+    get:
+      description: Retorna una lista de todos los warehouses registrados en el sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de warehouses
+          schema:
+            $ref: '#/definitions/domain.WarehousesResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Lista todos los warehouses
+      tags:
+      - Warehouse
+    post:
+      description: Crea un nuevo warehouse en el sistema
+      parameters:
+      - description: warehouse a crear
+        in: body
+        name: warehouse
+        required: true
+        schema:
+          $ref: '#/definitions/domain.WarehouseAttributes'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Warehouse creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.WarehouseResponse'
+        "409":
+          description: Código del warehouse ya existente
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "422":
+          description: Datos malformados o faltantes
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Crea un nuevo warehouse
+      tags:
+      - Warehouse
+  /warehouses/{id}:
+    delete:
+      description: Elimina un warehouse por su ID de la base de datos
+      parameters:
+      - description: ID del warehouse
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: warehouse eliminado exitosamente
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El warehouse no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Elimina un warehouse por su ID
+      tags:
+      - Warehouse
+    get:
+      description: Retorna la información de un warehouse por su ID
+      parameters:
+      - description: ID del warehouse
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Listado de warehouses
+          schema:
+            $ref: '#/definitions/domain.WarehousesResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El warehouse no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Retorna un warehouse por su ID
+      tags:
+      - Warehouse
+    patch:
+      description: Actualiza un warehouse por su ID de la base de datos
+      parameters:
+      - description: ID del warehouse
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: warehouse a actualizar
+        in: body
+        name: warehouse
+        required: true
+        schema:
+          $ref: '#/definitions/domain.WarehouseAttributes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: warehouse actualizado exitosamente
+          schema:
+            $ref: '#/definitions/domain.WarehouseResponse'
+        "400":
+          description: ID no enviado o malformado
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "404":
+          description: El warehouse no existe
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "409":
+          description: Código del warehouse ya existente
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/domain.ErrorResponse'
+      summary: Actualiza un warehouse por su ID
+      tags:
+      - Warehouse
+swagger: "2.0"
