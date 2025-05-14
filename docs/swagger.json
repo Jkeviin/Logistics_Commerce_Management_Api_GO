@@ -1,0 +1,1821 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API para gestionar sellers y warehouses",
+        "title": "API de Sellers y Warehouses",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/buyers": {
+            "get": {
+                "description": "Devuelve todos los buyers del sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Buyer"
+                ],
+                "summary": "Devuelve todos los buyers",
+                "responses": {
+                    "200": {
+                        "description": "Lista de buyers obtenida exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerListResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo buyer en el sistema",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Buyer"
+                ],
+                "summary": "Crea un nuevo buyer",
+                "parameters": [
+                    {
+                        "description": "Buyer a crear",
+                        "name": "buyer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Buyer creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerDoc"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del buyer ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/buyers/{id}": {
+            "get": {
+                "description": "Devuelve un buyer por id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Buyer"
+                ],
+                "summary": "Devuelve un buyer por id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del buyer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Buyer obtenido exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Error de validación",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Buyer no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un buyer por id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Buyer"
+                ],
+                "summary": "Elimina un buyer por id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del buyer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Buyer eliminado exitosamente"
+                    },
+                    "400": {
+                        "description": "Error de validación",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Buyer no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza un buyer por id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Buyer"
+                ],
+                "summary": "Actualiza un buyer por id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del buyer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Buyer a actualizar",
+                        "name": "buyer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Buyer actualizado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.BuyerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Error de validación",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Buyer no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del buyer ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees": {
+            "get": {
+                "description": "Retorna una lista de todos los Employees registrados en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Lista todos los Employees",
+                "responses": {
+                    "200": {
+                        "description": "Listado de Employees",
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeesResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo empleado en el sistema con los datos proporcionados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Crea un nuevo empleado",
+                "parameters": [
+                    {
+                        "description": "Datos del empleado a crear",
+                        "name": "employee",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeeAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Empleado creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeeResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "El código de tarjeta ya existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/{id}": {
+            "get": {
+                "description": "Retorna la información de un Employee por su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Retorna un Employee por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del Employee",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de Employees",
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El employee no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un employee por su ID de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Elimina un employee por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del employee",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "employee eliminado exitosamente"
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El employee no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza los datos de un empleado existente en el sistema",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Actualiza un empleado por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del empleado",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Datos del empleado a actualizar",
+                        "name": "employee",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeePatchAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empleado actualizado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.EmployeeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El empleado no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "El código de tarjeta ya existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "description": "Retorna una lista de todos los productos registrados en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Lista todos los productos",
+                "responses": {
+                    "200": {
+                        "description": "Listado de productos",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo producto en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Crea un nuevo producto",
+                "parameters": [
+                    {
+                        "description": "Producto a crear",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Producto creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del producto ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "description": "Obtiene un producto por su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Obtiene un producto por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del producto",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID de producto inválido",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Producto no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un producto por su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Elimina un producto por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del producto",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Producto eliminado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID de producto inválido",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Producto no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza un producto por su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Actualiza un producto por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del producto",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Producto a actualizar",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto actualizado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ProductResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID de producto inválido",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Producto no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sections": {
+            "get": {
+                "description": "Retorna una lista con todas las sections registradas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Section"
+                ],
+                "summary": "Lista todas las sections",
+                "responses": {
+                    "200": {
+                        "description": "Listado de sections",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo section en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Section"
+                ],
+                "summary": "Crea un nuevo section",
+                "parameters": [
+                    {
+                        "description": "section a crear",
+                        "name": "section",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Section creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del section ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sections/{id}": {
+            "get": {
+                "description": "Retorna la información de un section por su id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Section"
+                ],
+                "summary": "Retorna un section por su id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del section",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Section encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Section no encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina una sección por su ID de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Section"
+                ],
+                "summary": "Elimina una sección por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID de la sección",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "sección eliminada exitosamente"
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "La sección no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza una sección por su ID de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Section"
+                ],
+                "summary": "Actualiza una sección por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID de la sección",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "sección a actualizar",
+                        "name": "section",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sección actualizada exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SectionPatchAttributes"
+                        }
+                    },
+                    "404": {
+                        "description": "La sección no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sellers": {
+            "get": {
+                "description": "Retorna una lista de todos los proveedores registrados en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sellers"
+                ],
+                "summary": "Lista todos los proveedores",
+                "responses": {
+                    "200": {
+                        "description": "Listado de proveedores",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellersResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo proveedor en el sistema con los datos proporcionados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sellers"
+                ],
+                "summary": "Crea un nuevo proveedor",
+                "parameters": [
+                    {
+                        "description": "Datos del proveedor a crear",
+                        "name": "seller",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellerAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Proveedor creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellerResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "El CID ya existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sellers/{id}": {
+            "get": {
+                "description": "Retorna la información de un proveedor específico basado en su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sellers"
+                ],
+                "summary": "Retorna un proveedor por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del proveedor",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proveedor encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El proveedor no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un proveedor existente de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sellers"
+                ],
+                "summary": "Elimina un proveedor por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del proveedor",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Proveedor eliminado exitosamente"
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El proveedor no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza un proveedor existente con los datos proporcionados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Sellers"
+                ],
+                "summary": "Actualiza un proveedor por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del proveedor",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Datos del proveedor a actualizar",
+                        "name": "seller",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellerAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proveedor actualizado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.SellerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El proveedor no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "El CID ya existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/warehouses": {
+            "get": {
+                "description": "Retorna una lista de todos los warehouses registrados en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Lista todos los warehouses",
+                "responses": {
+                    "200": {
+                        "description": "Listado de warehouses",
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehousesResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crea un nuevo warehouse en el sistema",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Crea un nuevo warehouse",
+                "parameters": [
+                    {
+                        "description": "warehouse a crear",
+                        "name": "warehouse",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehouseAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Warehouse creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehouseResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del warehouse ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Datos malformados o faltantes",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/warehouses/{id}": {
+            "get": {
+                "description": "Retorna la información de un warehouse por su ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Retorna un warehouse por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del warehouse",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de warehouses",
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehousesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El warehouse no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un warehouse por su ID de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Elimina un warehouse por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del warehouse",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "warehouse eliminado exitosamente"
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El warehouse no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Actualiza un warehouse por su ID de la base de datos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Actualiza un warehouse por su ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID del warehouse",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "warehouse a actualizar",
+                        "name": "warehouse",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehouseAttributes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "warehouse actualizado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.WarehouseResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "ID no enviado o malformado",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "El warehouse no existe",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Código del warehouse ya existente",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "schema": {
+                            "$ref": "#/definitions/domain.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.BuyerAttributes": {
+            "type": "object",
+            "properties": {
+                "card_number_id": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.BuyerDoc": {
+            "type": "object",
+            "properties": {
+                "card_number_id": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.BuyerListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.BuyerDoc"
+                    }
+                }
+            }
+        },
+        "domain.BuyerResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.BuyerDoc"
+                }
+            }
+        },
+        "domain.EmployeeAttributes": {
+            "type": "object",
+            "properties": {
+                "card_number_id": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.EmployeeDoc": {
+            "type": "object",
+            "properties": {
+                "card_number_id": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.EmployeePatchAttributes": {
+            "type": "object",
+            "properties": {
+                "card_number_id": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.EmployeeResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.EmployeeDoc"
+                }
+            }
+        },
+        "domain.EmployeesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.EmployeeDoc"
+                    }
+                }
+            }
+        },
+        "domain.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.ProductAttributes": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "expiration_date": {
+                    "type": "string"
+                },
+                "expiration_rate": {
+                    "type": "integer"
+                },
+                "freezing_rate": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "length": {
+                    "type": "integer"
+                },
+                "netweight": {
+                    "type": "integer"
+                },
+                "product_code": {
+                    "type": "string"
+                },
+                "product_type_id": {
+                    "type": "integer"
+                },
+                "recommended_freezing_temperature": {
+                    "type": "integer"
+                },
+                "seller_id": {
+                    "type": "integer"
+                },
+                "width": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.ProductDoc": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "expiration_date": {
+                    "type": "string"
+                },
+                "expiration_rate": {
+                    "type": "integer"
+                },
+                "freezing_rate": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "length": {
+                    "type": "integer"
+                },
+                "netweight": {
+                    "type": "integer"
+                },
+                "product_code": {
+                    "type": "string"
+                },
+                "product_type_id": {
+                    "type": "integer"
+                },
+                "recommended_freezing_temperature": {
+                    "type": "integer"
+                },
+                "seller_id": {
+                    "type": "integer"
+                },
+                "width": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.ProductResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.ProductDoc"
+                }
+            }
+        },
+        "domain.ProductsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.ProductDoc"
+                    }
+                }
+            }
+        },
+        "domain.SectionAttributes": {
+            "type": "object",
+            "properties": {
+                "current_capacity": {
+                    "type": "integer"
+                },
+                "current_temperature": {
+                    "type": "integer"
+                },
+                "maximum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_temperature": {
+                    "type": "integer"
+                },
+                "product_type_id": {
+                    "type": "integer"
+                },
+                "section_number": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.SectionDoc": {
+            "type": "object",
+            "properties": {
+                "current_capacity": {
+                    "type": "integer"
+                },
+                "current_temperature": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "maximum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_temperature": {
+                    "type": "integer"
+                },
+                "product_type_id": {
+                    "type": "integer"
+                },
+                "section_number": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.SectionPatchAttributes": {
+            "type": "object",
+            "properties": {
+                "current_capacity": {
+                    "type": "integer"
+                },
+                "current_temperature": {
+                    "type": "integer"
+                },
+                "maximum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_capacity": {
+                    "type": "integer"
+                },
+                "minimum_temperature": {
+                    "type": "integer"
+                },
+                "product_type_id": {
+                    "type": "integer"
+                },
+                "section_number": {
+                    "type": "string"
+                },
+                "warehouse_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.SectionResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.SectionDoc"
+                }
+            }
+        },
+        "domain.SectionsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.SectionDoc"
+                    }
+                }
+            }
+        },
+        "domain.SellerAttributes": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "telephone": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.SellerDoc": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "telephone": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.SellerResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.SellerDoc"
+                }
+            }
+        },
+        "domain.SellersResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.SellerDoc"
+                    }
+                }
+            }
+        },
+        "domain.WarehouseAttributes": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "minimun_capacity": {
+                    "type": "integer"
+                },
+                "minimun_temperature": {
+                    "type": "integer"
+                },
+                "telephone": {
+                    "type": "string"
+                },
+                "warehouse_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.WarehouseDoc": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "minimun_capacity": {
+                    "type": "integer"
+                },
+                "minimun_temperature": {
+                    "type": "integer"
+                },
+                "telephone": {
+                    "type": "string"
+                },
+                "warehouse_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.WarehouseResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/domain.WarehouseDoc"
+                }
+            }
+        },
+        "domain.WarehousesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.WarehouseDoc"
+                    }
+                }
+            }
+        }
+    }
+}
